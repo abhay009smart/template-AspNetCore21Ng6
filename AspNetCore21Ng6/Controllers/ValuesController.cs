@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCore21Ng6.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,8 +12,14 @@ namespace AspNetCore21Ng6.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // GET: api/Values
-        [HttpGet]
+    readonly BloggingContext _dbContext;
+
+    public ValuesController(BloggingContext bloggingContext)
+    {
+      _dbContext = bloggingContext;
+    }
+    // GET: api/Values
+    [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
